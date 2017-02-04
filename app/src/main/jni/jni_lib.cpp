@@ -13,6 +13,7 @@ JNINativeMethod g_nativeMethod[METHOD_NUM]={
 jint JNI_OnLoad(JavaVM* vm, void* reserved) {
     JNIEnv *env;
     if (vm->GetEnv((void **) &env, JNI_VERSION_1_6) != JNI_OK)
+        //return not JNI_OK, there is another thread executing this function, just cancel it
         return JNI_ERR;
 
     jclass jClass = env->FindClass(JNI_AN_MainActivity);
